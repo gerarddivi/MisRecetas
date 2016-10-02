@@ -29,12 +29,15 @@ class ViewController: UITableViewController {
         recipe = Recipe(name: "Arroz meloso de montaña",
                         image: #imageLiteral(resourceName: "meloso"),
                         time: 60,
-                        ingredients: ["Arroz bomba", "Tomate maduro", "Cebolla", "Ajo", "Pimiento rojo", "Pimiento Verde","Puerro","Setas variadas deshidratadas","Espárragos","Zanahoria","Butifarra blanca"],
-                        steps: ["Ponemos en remojo las setas deshidratadas, el caldo lo usaremos para cocer el arroz",
-                                "Hacemos el sofrito con el tomate, cebolla, ajo y pimientos, mi secreto es triturarlo antes, dejar evaporar agua y sofreir hasta que quede confitado",
-                                "Marcamos el arroz con el sofrito, añadimos el caldo hirviendo",
-                                "Extendemos la masa encima de una bandeja y añadimos el resto de ingredientes",
-                                "Hornear durante 12 minutos"])
+                        ingredients: ["Aceite virgen extra","Arroz bomba", "Tomate maduro", "Cebolla", "Ajo", "Pimiento rojo", "Pimiento Verde","Puerro","Setas variadas deshidratadas","Espárragos","Espianacas","Zanahoria","Butifarra blanca"],
+                        steps: ["Ponemos en remojo las setas deshidratadas, el caldo lo usaremos para cocer el arroz junto con caldo de ave, o verduras o el            que queráis",
+                                "Hacemos el sofrito con el tomate, cebolla, ajo y pimientos, mi secreto es triturarlo antes, dejar evaporar el agua y sofreir hasta que quede confitado, una vez evaporada el agua le añado un vasito de vino blanco",
+                                "Mientras hacemos el sofrito vamos cortando el fondo al gusto, eso sí el puerro lo más pequeñito que se pueda",
+                                "Marcamos el arroz con el sofrito y el fondo, añadimos el caldo hirviendo",
+                                "Una vez haya arrancado a hervir, fuego medio alto durante 5 minutos, bajamos el fuego a medio vigilando que no se pegue mucho el arroz durante unos 8 o 9 minutos más, el secreto de un buen socarrat es que no sepa todo el arroz a quemado 😉",
+                                "Para que quede meloso hay que ir removiendo de vez en cuando el arroz para que suelte el almidón y quede la textura deseada, la cantidad de caldo depende de muchas cosas, así que hay que vigilar que no se quede sin caldo, ni muy caldoso, normalmente suele ser para meloso, entre 2 y 3 partes de caldo por una de arroz",
+                                "Una vez pasados los 13, 14 minutos de cocción, dejar reposar otros 3 minutos",
+                                "Ya sólo queda servir y disfrutar, bon appétit!!! 😎"])
         recipes.append(recipe)
         
         recipe = Recipe(name: "Estofado de Canguro con salsa Romesco",
@@ -139,8 +142,6 @@ class ViewController: UITableViewController {
 //        cell.thumbnailImageView.layer.cornerRadius = 90
 //        cell.thumbnailImageView.clipsToBounds = true
         
-        
-        
         return cell
     }
     
@@ -149,7 +150,6 @@ class ViewController: UITableViewController {
         
         if editingStyle == .delete {
             self.recipes.remove(at: indexPath.row)
-            
         }
         
         self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -160,7 +160,17 @@ class ViewController: UITableViewController {
         //Compartir
         let shareAction = UITableViewRowAction(style: .default, title: "Compartir") { (action, indexPath) in
             
-            let shareDefaultText = "Estoy mirando la receta de \(self.recipes[indexPath.row].name!) en la App del curso de iOS 10 con JB"
+            var shareDefaultText = "Estoy mirando en la App del curso de iOS 10 con Juan Gabriel la receta de \(self.recipes[indexPath.row].name!).\nSe tarda \(self.recipes[indexPath.row].time!) minutos. \nTiene estos ingredientes: \n"
+            
+            for ingrediente in self.recipes[indexPath.row].ingredients {
+                shareDefaultText += "-\(ingrediente)\n"
+            }
+            
+            shareDefaultText += "Los pasos a seguir son : \n"
+            
+            for paso in self.recipes[indexPath.row].steps {
+                shareDefaultText += "-\(paso). \n"
+            }
             
             let activityController = UIActivityViewController(activityItems: [shareDefaultText, self.recipes[indexPath.row].image!], applicationActivities: nil)
             self.present(activityController, animated: true, completion: nil)

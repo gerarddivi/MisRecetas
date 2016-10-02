@@ -25,4 +25,5 @@ class Recipe: NSObject {
         self.ingredients = ingredients
         self.steps = steps
     }
+    
 }
