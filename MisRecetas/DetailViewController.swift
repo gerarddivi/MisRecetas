@@ -33,12 +33,18 @@ class DetailViewController: UIViewController {
         self.title = recipe.name
 
         self.recipeImageView.image = self.recipe.image
+        self.recipeImageView.layer.borderColor = UIColor.darkGray.cgColor
+        self.recipeImageView.layer.borderWidth = 2
+        self.recipeImageView.layer.cornerRadius = 0
         
-        self.tableViewDetail.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) .withAlphaComponent(0.75)
+        self.tableViewDetail.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1) .withAlphaComponent(0.50)
         
         self.tableViewDetail.tableFooterView = UIView(frame: .zero)
         
-        self.tableViewDetail.separatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) .withAlphaComponent(0.75)
+        self.tableViewDetail.separatorColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1) .withAlphaComponent(0.9)
+        self.tableViewDetail.layer.borderWidth = 2
+        self.tableViewDetail.layer.borderColor = UIColor.darkGray.cgColor
+        self.tableViewDetail.layer.cornerRadius = 0
         
         
         self.tableViewDetail.estimatedRowHeight = 30
@@ -56,6 +62,7 @@ class DetailViewController: UIViewController {
                 self.recipe.rating = rating
                 self.ratingButton.setImage(UIImage(named: self.recipe.rating), for: .normal)
             }
+            
         }
     }
     
@@ -86,17 +93,19 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
         case 0:
-            return 2
+            return 1
         case 1:
-            return self.recipe.ingredients.count
+            return 1
         case 2:
+            return self.recipe.ingredients.count
+        case 3:
             return self.recipe.steps.count
         default:
             return 0
@@ -106,38 +115,25 @@ extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailRecipecell", for: indexPath) as! RecipeDetailViewCellTableViewCell
         
-        cell.backgroundColor = UIColor.clear
+        cell.backgroundColor = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 0.6882543103)
         
         switch indexPath.section {
         case 0:
-            switch indexPath.row {
-                case 0:
-                    cell.keyLabel.text = "Nombre: "
-                    cell.valueLabel.text = self.recipe.name
-                case 1:
-                    cell.keyLabel.text = "Tiempo: "
-                    cell.valueLabel.text = "\(self.recipe.time!) min"
-//                case 2:
-//                    cell.keyLabel.text = "Favorita: "
-//                    if self.recipe.isFavourite {
-//                        cell.valueLabel.text = "Sí"
-//                    } else {
-//                        cell.valueLabel.text = "No"
-//                    }
-                default:
-                    break
-
-                }
+            cell.keyLabel.text = ""
+            cell.valueLabel.text = self.recipe.name
         case 1:
+            cell.keyLabel.text = ""
+            cell.valueLabel.text = "\(self.recipe.time!) minutos"
+        case 2:
             if indexPath.row == 0 {
-                cell.keyLabel.text = "Ingredientes:"
+                cell.keyLabel.text = ""
             } else {
                 cell.keyLabel.text = ""
             }
             cell.valueLabel.text = self.recipe.ingredients[indexPath.row]
-        case 2:
+        case 3:
             if indexPath.row == 0 {
-                cell.keyLabel.text = "Pasos a seguir:"
+                cell.keyLabel.text = ""
             } else {
                 cell.keyLabel.text = ""
             }
@@ -151,14 +147,17 @@ extension DetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
         var title = ""
         
         switch section {
         case 0:
-            title = ""
+            title = "Nombre"
         case 1:
-            title = "Ingredientes"
+            title = "Tiempo"
         case 2:
+            title = "Ingredientes"
+        case 3:
             title = "Pasos a seguir"
         default:
             break
@@ -166,6 +165,7 @@ extension DetailViewController: UITableViewDataSource {
         return title
         }
     }
+
 
 extension DetailViewController: UITableViewDelegate {
     

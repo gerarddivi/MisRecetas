@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
         UINavigationBar.appearance().tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        UINavigationBar.appearance().layer.borderColor = UIColor.black.cgColor
+//        UINavigationBar.appearance().layer.borderWidth = 2
+//        UINavigationBar.appearance().layer.cornerRadius = 5
+//        UINavigationBar.appearance().clipsToBounds = true
+        
         
 //        if let barFont = UIFont(name: "Avenir Next", size: 22) {
 //            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),

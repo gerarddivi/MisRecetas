@@ -141,6 +141,8 @@ class ViewController: UITableViewController {
     
 //        cell.thumbnailImageView.layer.cornerRadius = 90
 //        cell.thumbnailImageView.clipsToBounds = true
+//        cell.thumbnailImageView.layer.borderWidth = 4
+        cell.thumbnailImageView.layer.borderColor = UIColor.darkGray.cgColor
         
         return cell
     }

@@ -2,7 +2,7 @@
 //  RecipeDetailViewCellTableViewCell.swift
 //  MisRecetas
 //
-//  Created by Gerard Divi on 29/9/16.
+//  Created by Gerard Divi on 22/9/16.
 //  Copyright © 2016 Gerard Divi. All rights reserved.
 //
 

@@ -18,6 +18,8 @@ class ReviewViewController: UIViewController {
     
     var ratingSelected: String?
     
+    var timer: Timer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,15 +69,43 @@ class ReviewViewController: UIViewController {
         switch sender.tag {
         case 1:
             ratingSelected = "dislike"
+            let alert = UIAlertController(title: "Ooohhh!", message: "Siento que no te haya gustado, intentaré mejorar la receta!!!", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+                self.performSegue(withIdentifier: "unwindToDetailView", sender: sender)
+            })
+            let cancelButton = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            present(alert, animated: true, completion: nil)
+            alert.addAction(okButton)
+            alert.addAction(cancelButton)
         case 2:
             ratingSelected = "good"
+            let alert = UIAlertController(title: "Bien!", message: "Te ha gustado! De todas maneras siempre se puede mejorar, verdad?", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+                self.performSegue(withIdentifier: "unwindToDetailView", sender: sender)
+            })
+            let cancelButton = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            present(alert, animated: true, completion: nil)
+            alert.addAction(okButton)
+            alert.addAction(cancelButton)
+
         case 3:
             ratingSelected = "great"
+            let alert = UIAlertController(title: "Perfecto!", message: "Súper! Me alegra mucho que te encante la receta!!!", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+                self.performSegue(withIdentifier: "unwindToDetailView", sender: sender)
+            })
+            let cancelButton = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            present(alert, animated: true, completion: nil)
+            alert.addAction(okButton)
+            alert.addAction(cancelButton)
+
         default:
             break
         }
+            
         
-        performSegue(withIdentifier: "unwindToDetailView", sender: sender)
+    
+
     }
 
     /*
